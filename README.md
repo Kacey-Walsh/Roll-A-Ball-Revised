@@ -12,8 +12,8 @@ outfiting the "pac-man esq" style game into a platform by allowing for jumps, mo
 - Added circular "cookie" jump
 - Changed checkpoint "activation" color from light green to white
 - Updated models for:
-= Player Ball
-= Rotating Candy Cane Jump
+  - Player Ball
+  - Rotating Candy Cane Jump
 
 
 ## Changelog - 0.04.00
