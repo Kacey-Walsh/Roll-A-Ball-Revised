@@ -5,10 +5,10 @@ v. 0.04.2 - Revise of school project titled "Roll A Ball", in DIG 3480 Computer 
 outfiting the "pac-man esq" style game into a platform by allowing for jumps, moving obstacles, and checkpoints
 
 **Progress videos:**
-- *Most recent: 0.04.01* https://www.youtube.com/watch?v=1A4Kmb32fkY&ab_channel=Aidoneeus
-  - Playlist: https://www.youtube.com/playlist?list=PLYiwtPOW1jqgUbQmk1NZf39hbnBE7JfuB
+- *Most recent: 0.05* https://www.youtube.com/watch?v=1A4Kmb32fkY&ab_channel=Aidoneeus
+  - Playlist: https://www.youtube.com/watch?v=0YgzmwoWwF4&list=PLYiwtPOW1jqgUbQmk1NZf39hbnBE7JfuB&index=6&ab_channel=Aidoneeus
   
-## Changelog - 0.04.01
+## Changelog - 0.05.
 - Models:
   - Updated models for box jumps and creating two variations
   - Updated model for Player
