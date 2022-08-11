@@ -46,7 +46,8 @@ public class PlayerController : MonoBehaviour
     
     //Checkpoints
     public static Vector3 LastCheckPointPos = new Vector3(0,2,0);
-    //Sound
+    
+    public GameObject controlInfo;
 
 
 //================START================
@@ -58,6 +59,7 @@ public class PlayerController : MonoBehaviour
         score = 0;
         SetScoreText ();
         winTextObject.SetActive(false); 
+        controlInfo.SetActive(false);
     }
 
 //================UPDATE================
@@ -96,65 +98,75 @@ public class PlayerController : MonoBehaviour
 
         //Win Index
             //Collect all available 'Coins' and reach final level
-		if ((score >= 8) && (level == 2))
+		if (level == 3)
 		{
             // Set the text value of your 'winText'
             winTextObject.SetActive(true);
 		}
 
-    //-----DEBUG-----
+        //DEBUG Menu show/hide
+            //Show
+            if(Input.GetKeyDown(KeyCode.P))
+            {
+                controlInfo.gameObject.SetActive(true);
+            }
+            
+            //Hide
+            if(Input.GetKeyUp(KeyCode.P))
+            {
+                controlInfo.gameObject.SetActive(false);
+            }
+
+    //-----DEBUG//DEV CODES-----
         //THERE IS A BUG WITH THE BALL SPEEDS IN UNITY VS BUILDS, FOR UNITY THE SPEED & JUMP SPEED SHOULD BE 2 BUT ANY
         //BUILD SHOULD HAVE A SPEED & JUMP SPEED OF 10 & 20
         //Editor is 5 & 6
 
-            //If Keypad Plus is pressed - Increase Score exponentially
-        if(Input.GetKey(KeyCode.KeypadPlus))
-        {
-            score = score + 1;
-            SetScoreText();
-        }
+            //If Keypad Plus is pressed - Increase Score 
+                if(Input.GetKeyDown(KeyCode.KeypadPlus))
+                {
+                    score = score + 1;
+                    SetScoreText();
+                }
 
             //If Keypad Enter is pressed - Move ball up 10
-        if(Input.GetKey(KeyCode.KeypadEnter))
-        {
-            transform.position = new Vector3(transform.position.x, 30, transform.position.z);
-        }
+                if(Input.GetKeyDown(KeyCode.KeypadEnter))
+                {
+                    transform.position = new Vector3(transform.position.x, transform.position.y+10, transform.position.z);
+                }
         
-            //If Keypad 0 pressed - restart at Test Screen
-        if(Input.GetKey(KeyCode.Keypad0))
-        {
-            transform.position = new Vector3(0, 2, 0);
-        }
+            //If Keypad 0-3 pressed - restart at Test Screen-lvl 3
+                if(Input.GetKey(KeyCode.Keypad0))
+                {
+                    transform.position = new Vector3(0, 2, 0);
+                }
 
-            //If Keypad 1 pressed - Warp to lvl 1
-        if(Input.GetKey(KeyCode.Keypad1))
-        {
-            transform.position = new Vector3(0, 2, 95);
-        }
+                if(Input.GetKey(KeyCode.Keypad1))
+                {
+                    transform.position = new Vector3(0, 2, 95);
+                }
 
-            //If Keypad 2 pressed - Warp to lvl 2
-        if(Input.GetKey(KeyCode.Keypad2))
-        {
-            transform.position = new Vector3(0, 20, 130);
-        }
+                if(Input.GetKey(KeyCode.Keypad2))
+                {
+                    transform.position = new Vector3(0, 20, 130);
+                }
 
-        if(Input.GetKey(KeyCode.Keypad3))
-        {
-            transform.position = new Vector3(0, 39, 173);
-        }
+                if(Input.GetKey(KeyCode.Keypad3))
+                {
+                    transform.position = new Vector3(0, 39, 173);
+                }
 
-            //If Keypad Plus is pressed - Increase Score exponentially
-        if(Input.GetKey(KeyCode.Escape))
-        {
-            Application.Quit();
-        }
+            //If Escape is pressed - Leave Game
+                if(Input.GetKeyDown(KeyCode.Escape))
+                {
+                    Application.Quit();
+                }
 
             //If Keypad Period is pressed - Warp to last checkpoint
-        if(Input.GetKey(KeyCode.KeypadPeriod))
-        {
-            GameObject.FindGameObjectWithTag("Player").transform.position = LastCheckPointPos;
-        }
-
+                if(Input.GetKey(KeyCode.KeypadPeriod))
+                {
+                    GameObject.FindGameObjectWithTag("Player").transform.position = LastCheckPointPos;
+                }
     }
 
 //================OTHER FUNCTIONS================
@@ -168,22 +180,22 @@ public class PlayerController : MonoBehaviour
     }
 
     //JUMPING
-        //GROUND LAYERS - ENTER & EXIT
-    void OnCollisionEnter(Collision Ground)
-    {
-        if(Ground.gameObject.tag == "Ground")
+            //GROUND LAYERS - ENTER & EXIT
+        void OnCollisionEnter(Collision Ground)
         {
-            isGrounded = true;
-        }
+            if(Ground.gameObject.tag == "Ground")
+            {
+                isGrounded = true;
+            }
 
-    }
-    void OnCollisionExit(Collision Ground)
-    {
-        if(Ground.gameObject.tag == "Ground")
-        {
-            isGrounded = false;
         }
-    }
+        void OnCollisionExit(Collision Ground)
+        {
+            if(Ground.gameObject.tag == "Ground")
+            {
+                isGrounded = false;
+            }
+        }
 
 
 
